@@ -2,7 +2,7 @@
 ## Calculator 클래스 만들기
 ---
 
-### Lv.1
+### [Lv.1](https://github.com/BaeJihae/calculatorProject/tree/main/Lv.1_Calculator.playground)
 : +, -, /, * 연산을 진행하는 클래스 만들기
 
 ### Lv.2
