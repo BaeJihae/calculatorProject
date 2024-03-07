@@ -8,7 +8,7 @@
 ### [Lv.2](https://github.com/BaeJihae/calculatorProject/tree/main/Lv.2_Calculator.playground)
 : +, -, /, *, % 연산을 진행하는 클래스 만들기
 
-### Lv.3
+### [Lv.3](https://github.com/BaeJihae/calculatorProject/tree/main/Lv.3_Calculator.playground)
 : +, -, /, *, % 의 각 연산을 하는 클래스를 만들어 계산기 클래스와 관계 만들기
 -> 단일책임원칙
 
