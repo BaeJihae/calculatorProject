@@ -23,7 +23,17 @@ class SubtractOperation: AbstractOperation {
 
 // 첫번째 값에서 두번째 값을 나눈 나눠주는 클래스
 class DivideOperation: AbstractOperation {
-    override func calculate(_ x: Int ,_ y: Int) -> Double { Double(x) / Double(y) }
+    override func calculate(_ x: Int ,_ y: Int) -> Double {
+        
+        // 분모가 0일 때 연산 구현1
+        if y == 0 {
+            print("분모가 0으로 나눗셈을 진행할 수 없습니다.")
+            return 0.0
+        }else{
+            return Double(x) / Double(y)
+        }
+    
+    }
 }
 
 // 두 개의 값을 곱해주는 클래스
@@ -103,7 +113,7 @@ resultPrint(calculator)
 
 // 값 변경
 calculator.firstNumber = 2343536457
-calculator.secondNumber = 7
+calculator.secondNumber = 0
 
 // 사칙연산 출력
 resultPrint(calculator)
