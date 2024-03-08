@@ -70,22 +70,34 @@ class ModulusOperation: AbstractOperation {
 
 // Calculator 클래스
 class Calculator {
-    
-    func calculate(_ firstNumber: Int, _ secondNumber: Int) -> Double {
-        // 추상화된 부모 클래스를 타입으로 가지는 변수
+    func calculate(_ op: Operation, _ firstNumber: Int, _ secondNumber: Int) -> Double {
+        
         var calculator: AbstractOperation = AbstractOperation()
+        calculator = operationSetting(op)
         return calculator.calculate(firstNumber, secondNumber)
     }
 }
 
-// 사칙연산 출력 함수
-func resultPrint(_ calculator: Calculator) {
+// 연산 바꾸는 함수
+func operationSetting(_ op: Operation) -> AbstractOperation {
     
-
+    switch op {
+    case .add :
+        return AddOperation()
+    case .subtract :
+        return SubtractOperation()
+    case .divide :
+        return DivideOperation()
+    case .multiply :
+        return MultiplyOperation()
+    case .modulus :
+        return ModulusOperation()
+    }
 }
+
 
 // 인스턴스 생성
 let calculator = Calculator()
 
-// 사칙연산 출력
-resultPrint(calculator)
+calculator.calculate(.add, 2, 5)
+
