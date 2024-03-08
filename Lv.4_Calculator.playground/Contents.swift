@@ -43,7 +43,14 @@ class MultiplyOperation: AbstractOperation {
 
 // 첫번째 값에서 두번째 값을 나눈 나머지를 구하는 클래스
 class ModulusOperation: AbstractOperation {
-    override func calculate(_ x: Int ,_ y: Int) -> Double { Double(x % y) }
+    override func calculate(_ x: Int ,_ y: Int) -> Double {
+        if y == 0 {
+            print("분모가 0으로 나머지를 진행할 수 없습니다.")
+            return 0.0
+        }else {
+            return Double(x % y)
+        }
+    }
 }
 
 // Calculator 클래스
