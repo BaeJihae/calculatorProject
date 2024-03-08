@@ -6,17 +6,10 @@
 // AbstractOperation라는 추상화된 클래스를 만들기
 // 기존에 구현한 AddOperation(더하기), SubtractOperation(빼기), MultiplyOperation(곱하기), DivideOperation(나누기) 클래스들과 관계를 맺고 Calculator 클래스의 내부 코드를 변경
 
-enum Operation {
-    case add
-    case subtract
-    case divide
-    case multiply
-    case modulus
-}
 
 // 계산하는 과정을 추상화 시킨 클래스
 class AbstractOperation {
-    func calculate(_ x: Int ,_ y: Int) -> Double { -1 }
+    func calculate(_ x: Int ,_ y: Int) -> Double { 0 }
 }
 
 // 두 개의 값을 더해주는 클래스
@@ -42,7 +35,7 @@ class DivideOperation: AbstractOperation {
 //        }
         
         // 분모가 0일 때 연산 구현2
-        guard y != 0 else { return 0.0 }
+        guard y != 0 else { return 0 }
         
         return Double(x) / Double(y)
         
@@ -58,8 +51,7 @@ class MultiplyOperation: AbstractOperation {
 class ModulusOperation: AbstractOperation {
     override func calculate(_ x: Int ,_ y: Int) -> Double {
         if y == 0 {
-            print("분모가 0으로 나머지를 진행할 수 없습니다.")
-            return 0.0
+            return 0
         }else {
             return Double(x % y)
         }
@@ -68,17 +60,30 @@ class ModulusOperation: AbstractOperation {
 
 // MARK: - calculator 클래스
 
+enum Operation {
+    case add
+    case subtract
+    case divide
+    case multiply
+    case modulus
+}
+
 // Calculator 클래스
 class Calculator {
-    func calculate(_ op: Operation, _ firstNumber: Int, _ secondNumber: Int) -> Double {
-        var calculator: AbstractOperation = AbstractOperation()
-        calculator = operationSetting(op)
-        return calculator.calculate(firstNumber, secondNumber)
+    
+    var operation: AbstractOperation?
+    
+    init(operation: AbstractOperation?) {
+        self.operation = operation
+    }
+    
+    func calculate( _ firstNumber: Int, _ secondNumber: Int) -> Double {
+        return operation?.calculate(firstNumber, secondNumber) ?? 0
     }
 }
 
 // 연산 바꾸는 함수
-func operationSetting(_ op: Operation) -> AbstractOperation {
+func opSetting(_ op: Operation) -> AbstractOperation {
     
     switch op {
     case .add :
@@ -95,13 +100,26 @@ func operationSetting(_ op: Operation) -> AbstractOperation {
 }
 
 // 인스턴스 생성
-let calculator = Calculator()
+let calculator = Calculator(operation: AddOperation())
 
-let addCalculate = calculator.calculate(.add, 2, 5)
-let subCalculate = calculator.calculate(.subtract, 2, 0)
-let divCalculate = calculator.calculate(.divide, 2, 5)
-let mulCalculate = calculator.calculate(.multiply, 2, 0)
-let modulCalculate = calculator.calculate(.modulus, 2, 5)
+// 더하기 연산 진행
+let addCalculate = calculator.calculate( 2, 0)
+
+// 빼기 연산 진행
+calculator.operation = opSetting(.subtract)
+let subCalculate = calculator.calculate( 2, 0)
+
+// 나누기 연산 진행
+calculator.operation = opSetting(.divide)
+let divCalculate = calculator.calculate( 2, 0)
+
+// 곱하기 연산 진행
+calculator.operation = opSetting(.divide)
+let mulCalculate = calculator.calculate( 2, 0)
+
+// 나머지 연산 진행
+calculator.operation = opSetting(.modulus)
+let modulCalculate = calculator.calculate( 2, 0)
 
 print("더하기의 출력값은 \(addCalculate)입니다.")
 print("빼기의 출력값은 \(subCalculate)입니다.")
