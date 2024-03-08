@@ -23,15 +23,20 @@ class SubtractOperation: AbstractOperation {
 
 // 첫번째 값에서 두번째 값을 나눈 나눠주는 클래스
 class DivideOperation: AbstractOperation {
-    override func calculate(_ x: Int ,_ y: Int) -> Double {
+    override func calculate(_ x: Int ,_ y: Int) -> Double? {
         
-        // 분모가 0일 때 연산 구현1
-        if y == 0 {
-            print("분모가 0으로 나눗셈을 진행할 수 없습니다.")
-            return 0.0
-        }else{
-            return Double(x) / Double(y)
-        }
+//        // 분모가 0일 때 연산 구현1
+//        if y == 0 {
+//            print("분모가 0으로 나눗셈을 진행할 수 없습니다.")
+//            return 0.0
+//        }else{
+//            return Double(x) / Double(y)
+//        }
+        
+        // 분모가 0일 때 연산 구현2
+        guard y != 0 else { return nil }
+        
+        return Double(x) / Double(y)
     
     }
 }
