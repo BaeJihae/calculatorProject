@@ -8,7 +8,7 @@
 
 // 계산하는 과정을 추상화 시킨 클래스
 class AbstractOperation {
-    func calculate(_ x: Int ,_ y: Int) -> Double { 0.0 }
+    func calculate(_ x: Int ,_ y: Int) -> Double { -1 }
 }
 
 // 두 개의 값을 더해주는 클래스
@@ -50,20 +50,20 @@ class Calculator {
     func calculate(_ op: String) -> Double {
 
         // 추상화된 부모 클래스를 타입으로 가지는 변수
-        var calculator: AbstractOperation
+        var calculator: AbstractOperation = AbstractOperation()
         
         // 연산에 따른 자식 클래스의 인스턴스를 할당
         switch op {
         case "+" :
-            calculator = AddOperation(); break
+            calculator = AddOperation()
         case "-" :
-            calculator = SubtractOperation(); break
+            calculator = SubtractOperation()
         case "/" :
-            calculator = DivideOperation(); break
+            calculator = DivideOperation()
         case "*" :
-            calculator = MultiplyOperation(); break
+            calculator = MultiplyOperation()
         case "%" :
-            calculator = ModulusOperation(); break
+            calculator = ModulusOperation()
         default :
             print("잘못된 연산입니다.")
             return 0.0
