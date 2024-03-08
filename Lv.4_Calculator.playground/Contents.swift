@@ -71,7 +71,6 @@ class ModulusOperation: AbstractOperation {
 // Calculator 클래스
 class Calculator {
     func calculate(_ op: Operation, _ firstNumber: Int, _ secondNumber: Int) -> Double {
-        
         var calculator: AbstractOperation = AbstractOperation()
         calculator = operationSetting(op)
         return calculator.calculate(firstNumber, secondNumber)
@@ -95,9 +94,17 @@ func operationSetting(_ op: Operation) -> AbstractOperation {
     }
 }
 
-
 // 인스턴스 생성
 let calculator = Calculator()
 
-calculator.calculate(.add, 2, 5)
+let addCalculate = calculator.calculate(.add, 2, 5)
+let subCalculate = calculator.calculate(.subtract, 2, 0)
+let divCalculate = calculator.calculate(.divide, 2, 5)
+let mulCalculate = calculator.calculate(.multiply, 2, 0)
+let modulCalculate = calculator.calculate(.modulus, 2, 5)
 
+print("더하기의 출력값은 \(addCalculate)입니다.")
+print("빼기의 출력값은 \(subCalculate)입니다.")
+print("나누기의 출력값은 \(divCalculate)입니다.")
+print("곱하기의 출력값은 \(mulCalculate)입니다.")
+print("나머지의 출력값은 \(modulCalculate)입니다.")
